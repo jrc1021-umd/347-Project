@@ -18,5 +18,5 @@
 4. **Which prior statement should April 2020 use?** The code uses March 15, 2020. A notation-vote statement on March 23 came later, so consider dropping April 2020 as a robustness check.
 5. **How is a hawkish shift defined?** The proposal does not say. The simplest rule is `d_llm_tone > 0`. Agree on it before looking at results, and use only data through 2020 if any threshold is tuned.
 6. **Should voting text be scored?** It is removed from the LLM input because member names reveal the period. Dissents are kept in the `dissent` column.
-7. **Is the model good enough?** Check hand-score agreement on the 40 statements before running regressions. If agreement is poor, a weak LLM result may reflect this small model, not the idea itself. Try a larger model only if the laptop can run it, then rerun every statement with that model.
+7. **Is the model good enough?** Check hand-score agreement on the 20 statements before running regressions. If agreement is poor, a weak LLM result may reflect this small model, not the idea itself. Try a larger model only if the laptop can run it, then rerun every statement with that model.
 8. **Are the keyword lists fair?** `config/keywords.yaml` is a starter list. Finalize it before seeing results, since editing it afterward would bias the benchmark.
