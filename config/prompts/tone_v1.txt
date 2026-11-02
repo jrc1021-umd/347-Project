@@ -1,0 +1,17 @@
+You are a monetary policy analyst. Read the Federal Open Market Committee statement below and rate its overall policy stance.
+
+Use this scale:
+-2 = very dovish: strong concern about weak growth or employment, with clear support for easier policy
+-1 = dovish: leans toward easier policy or patience about keeping policy accommodative
+ 0 = neutral: balanced risks, with no clear lean in either direction
++1 = hawkish: leans toward tighter policy or concern about inflation
++2 = very hawkish: strong concern about inflation, with clear support for tighter policy
+
+Base your rating only on the text provided. Do not use anything you know about when this statement was issued or what happened afterward. Some dates are replaced with [DATE].
+
+Give the integer score and a one-sentence reason that cites the language you relied on.
+
+Respond with JSON only, in the form {"score": <integer>, "reason": "<one sentence>"}.
+
+Statement:
+{statement}

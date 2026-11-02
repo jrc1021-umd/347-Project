@@ -1,0 +1,21 @@
+sample:
+  start: "2011-01-01"
+  end: "2025-12-31"
+  train_end: "2020-12-31"     # out-of-sample test covers 2021-2025
+
+market:
+  download_start: "2010-11-01"   # early enough for prior 5-day controls
+  download_end: "2026-01-31"     # late enough for 5-day returns after Dec 2025
+  fred_series: [DGS2, DGS10, DFEDTARU, VIXCLS]
+  equity_ticker: SPY
+
+llm:
+  host: http://localhost:11434    # Ollama on your own computer; no API key or account needed
+  model: gemma3:4b                # keep the same model for the whole study
+  temperature: 0.3                # above 0 so the repeat-run check tests something real
+  num_ctx: 4096                   # enough for the longest statement
+  prompt_id: tone_v1
+  redact_dates: true
+
+text:
+  lm_dictionary_glob: "data/raw/Loughran-McDonald*.csv"
