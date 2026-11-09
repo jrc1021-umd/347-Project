@@ -12,8 +12,8 @@
 
 ## Team decisions (Nov 9, 2026)
 
-- Roles: **Shan:** benchmark signals, hand-scoring lead, AI log; **Pat:** regressions, event analysis, placebo tests; **Max:** out-of-sample test, investment rule, figures; Jacob coordination, data and LLM scoring, GitHub, report assembly.
-- Hand-scorers: [Name] and [Name], scoring 20 statements independently.
+- Roles: **Shan:** benchmark signals, hand-scoring lead, AI log; **Pat:** regressions, event analysis, placebo tests; **Max:** out-of-sample test, investment rule, figures; **Jacob:** coordination, data and LLM scoring, GitHub, report assembly.
+- Hand-scorers: Shan and Pat, scoring 20 statements independently.
 - Hawkish shift: d_llm_tone > 0.
 - Dates stay redacted in the main run.
 - Keyword lists are final as of today.
