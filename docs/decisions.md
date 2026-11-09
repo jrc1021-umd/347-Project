@@ -10,13 +10,13 @@
 - **Scoring uses a free local model instead of a paid API.** This replaces "LLM API (Claude or OpenAI)" in the proposal, so the report and AI Workflow Appendix must say so. Keep the same model for the whole study. Each score file records the model's digest, which identifies its exact version.
 - **Temperature is 0.3, with a different seed for each run.** At temperature 0 the repeat-run check would prove little, because identical answers would be expected.
 
-## Open questions
+## Team decisions (Nov 9, 2026)
 
-1. **Should dates stay redacted?** Removing dates limits hindsight, as the proposal promised, but it also removes forward guidance such as "at least through mid-2015," which may be real policy information. Set `redact_dates: false` in `config/settings.yaml` to compare, but save that run's scores under a different `--run` number.
-2. **What about hindsight beyond dates?** The model can still infer the period from content such as the pandemic or the war in Ukraine, and it learned from later history. Name this as a limitation in the report. Dates alone cannot remove it.
-3. **Does the score just repeat the rate decision?** Statements announce the decision, so tone may partly reflect it. The target-change control addresses this, but check how correlated `d_llm_tone` and `d_target_bp` are.
-4. **Which prior statement should April 2020 use?** The code uses March 15, 2020. A notation-vote statement on March 23 came later, so consider dropping April 2020 as a robustness check.
-5. **How is a hawkish shift defined?** The proposal does not say. The simplest rule is `d_llm_tone > 0`. Agree on it before looking at results, and use only data through 2020 if any threshold is tuned.
-6. **Should voting text be scored?** It is removed from the LLM input because member names reveal the period. Dissents are kept in the `dissent` column.
-7. **Is the model good enough?** Check hand-score agreement on the 20 statements before running regressions. If agreement is poor, a weak LLM result may reflect this small model, not the idea itself. Try a larger model only if the laptop can run it, then rerun every statement with that model.
-8. **Are the keyword lists fair?** `config/keywords.yaml` is a starter list. Finalize it before seeing results, since editing it afterward would bias the benchmark.
+- Roles: **Shan:** benchmark signals, hand-scoring lead, AI log; **Pat:** regressions, event analysis, placebo tests; **Max:** out-of-sample test, investment rule, figures; Jacob coordination, data and LLM scoring, GitHub, report assembly.
+- Hand-scorers: [Name] and [Name], scoring 20 statements independently.
+- Hawkish shift: d_llm_tone > 0.
+- Dates stay redacted in the main run.
+- Keyword lists are final as of today.
+- April 2020 stays in the main results; dropping it is a robustness check.
+- Voting text is excluded from LLM input; dissents are kept in the dissent column.
+- Prompt tone_v1 is locked for the main run; tone_v2 is the sensitivity check.
