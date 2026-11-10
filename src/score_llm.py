@@ -85,10 +85,11 @@ def score_one(cfg: dict, prompt: str, run: int) -> dict:
             },
             timeout=TIMEOUT_SECONDS,
         )
-        response.raise_for_status()
         try:
+            # Ollama returns a 500 error when the model gets stuck repeating itself.
+            response.raise_for_status()
             return {**parse_response(response.json()), "attempts": attempt + 1}
-        except (ValueError, KeyError, TypeError) as caught:
+        except (requests.HTTPError, ValueError, KeyError, TypeError) as caught:
             error = caught
     raise RuntimeError(f"No usable score after {MAX_ATTEMPTS} attempts: {error}")
 

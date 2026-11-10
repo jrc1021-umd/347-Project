@@ -17,7 +17,8 @@ class FakeResponse:
         self.payload = payload
 
     def raise_for_status(self):
-        pass
+        if self.payload.get("error"):
+            raise score_llm.requests.HTTPError(self.payload["error"])
 
     def json(self):
         return self.payload
@@ -115,3 +116,11 @@ def test_score_all_resumes(tmp_path, monkeypatch):
     assert len(calls) == 1
     assert len(result) == 2
     assert len(pd.read_csv(out)) == 2
+
+
+def test_retries_after_ollama_500(monkeypatch):
+    stuck = {"error": "prediction aborted, token repeat limit reached"}
+    calls = fake_post(monkeypatch, [stuck, body(0)])
+    result = score_llm.score_one(CFG, "p", run=2)
+    assert result["score"] == 0 and result["attempts"] == 2
+    assert [c["options"]["seed"] for c in calls] == [2000, 2001]
